@@ -5,3 +5,7 @@ Stack:
 - Sass
 - axios
 - React Testing Library/Jest
+
+Live:
+
+https://crazy-fetcher.netlify.app/
