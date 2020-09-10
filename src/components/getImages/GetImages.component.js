@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import axios from 'axios';
 
-function Logo() {
-    return (
-        <div className="logo">Crazy Fetcher</div>
-    )
-}
+import Logo from 'components/logo/Logo.component';
 
 export default class GetImages extends Component {
     constructor(props) {
@@ -27,12 +23,12 @@ export default class GetImages extends Component {
             .then(res => {
                 this.setState({
                     images: res.data
-                })
+                });
             })
             .catch((error) => {
                 console.log(error.message)
-            })
-    }
+            });
+    };
 
     nextImages() {
         if (this.state.counter < 27) {
@@ -46,20 +42,20 @@ export default class GetImages extends Component {
                 secondCounter: 3,
                 showPopup: true
             });
-        }
+        };
         window.scrollTo(0, 0);
-    }
+    };
 
     hidePopup() {
         this.setState({
             showPopup: false
         });
-    }
+    };
 
     render() {
         return (
             <>
-                <Logo />
+                <Logo title="Crazy Fetcher" />
                 <div className="images-container">
                     {
                         this.state.images.slice(this.state.counter, this.state.secondCounter).map(function (image) {
@@ -74,23 +70,27 @@ export default class GetImages extends Component {
                     }
                 </div>
 
-                <button className="btn-next" onClick={this.nextImages}>
-                show next images
+                <button className="btn-next"
+                    onClick={this.nextImages}
+                    data-testid="btn"
+                >
+                    show next images
                 </button>
 
-                <div 
-                onClick={this.hidePopup} 
-                className={this.state.showPopup === false ? "popup--hidden" : "popup"}
+                <div
+                    onClick={this.hidePopup}
+                    className={this.state.showPopup === false ? "popup--hidden" : "popup"}
                 >
                     <span>That was crazy ride!<p /> Click anywhere to go one more time!</span>
                 </div>
 
-                <div 
-                onClick={this.hidePopup} 
-                className={this.state.showPopup === false ? "popup-background--hidden" : "popup-background"}
+                <div
+                    onClick={this.hidePopup}
+                    className={this.state.showPopup === false ? "popup-background--hidden" : "popup-background"}
                 />
-            </>
 
+                <p className="footer">made by Mikołaj Cięszczyk (2020)</p>
+            </>
         )
-    }
-}
+    };
+};
